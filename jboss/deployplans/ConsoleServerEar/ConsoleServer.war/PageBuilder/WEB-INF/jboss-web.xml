@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+
+<jboss-web>
+	<ejb-ref>
+		<ejb-ref-name>ejb/BamServerConsole</ejb-ref-name>
+		<jndi-name>java:global/BamServerEar/BamServerEjb/BamServerConsoleBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/PathFinderConsole</ejb-ref-name>
+		<jndi-name>java:global/PathFinderEar/PathFinderEjb/PathFinderConsoleBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/CodeServerConsole</ejb-ref-name>
+		<jndi-name>java:global/PathFinderEar/CodeServerEjb/CodeServerConsoleBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/IngeniumConsole</ejb-ref-name>
+		<jndi-name>java:global/PathFinderEar/Ingenium/IngeniumConsoleBean</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/PageServerConsole</ejb-ref-name>
+		<jndi-name>java:global/PathFinderEar/PageBuilderEjb/PageBuilderConsoleBean!com.solcorp.consoleserver.servlet.ServletConsole</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/ServletConsole</ejb-ref-name>
+		<jndi-name>java:global/PathFinderEar/PageBuilderEjb/PageBuilderConsoleBean!com.solcorp.consoleserver.servlet.ServletConsole</jndi-name>
+	</ejb-ref>
+	<resource-ref>
+		<res-ref-name>jms/SynchronizerConnectionFactory</res-ref-name>
+		<jndi-name>java:/ConnectionFactory</jndi-name>
+	</resource-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/SynchronizerDestination</message-destination-ref-name>
+		<jndi-name>java:/global/jms/SynchronizerDestination</jndi-name>
+	</message-destination-ref>
+	
+	<!--
+		The AutoRefresh should be disabled unless in a Clustering environment, where values may be changed by other instances.
+	 -->
+	<env-entry>
+		<description>Time interval in milliseconds after which the console control page will check to see if the page should be automatically refreshed. A value of 0 disables the refresh checking.</description>
+		<env-entry-name>ConsoleServer/AutoRefreshingTime</env-entry-name>
+		<env-entry-type>java.lang.Integer</env-entry-type>
+		<env-entry-value>0</env-entry-value>
+	</env-entry>
+	
+	<!--
+		Secure ConsoleServer with security-constraint  
+	
+	<security-role>
+		<role-name>csrole</role-name>
+	</security-role>
+	
+	<security-domain>pathfinder-domain</security-domain>
+	-->	
+	
+</jboss-web>
+
+
+

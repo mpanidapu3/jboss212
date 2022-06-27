@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->                                                           
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+	<persistence-unit name="BamServerLogging">
+		<jta-data-source>java:/app/jdbc/BamServerDataSource</jta-data-source>
+		<class>com.solcorp.bamserver.entities.BaseEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentToStoreProcessEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInPathFinderEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInPageServerEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInFrameServerEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentToLoadProcessEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInRPCCallEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInSStepEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInServerEntity</class>
+		<class>com.solcorp.bamserver.entities.BamEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInHeadlessFlowEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInCodeServerEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInPathFinderConnectorEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInPathFinderWebServiceEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInRestfulServiceEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInSinglePStepEntity</class>
+		<class>com.solcorp.bamserver.entities.ServerEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInPageBuilderEntity</class>
+		<class>com.solcorp.bamserver.entities.TimeSpentInProcessFlowEntity</class>
+		<class>com.solcorp.bamserver.entities.RemoteServerEntity</class>
+		<class>com.solcorp.bamserver.entities.LogFunctionEntity</class>
+
+		<properties>
+			<property name="toplink.ddl-generation" value="create-tables" />
+			<property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)" />
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
+		</properties>
+	</persistence-unit>
+</persistence>

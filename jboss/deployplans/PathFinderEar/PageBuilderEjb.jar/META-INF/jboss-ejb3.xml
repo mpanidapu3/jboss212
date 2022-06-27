@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+<jboss:ejb-jar xmlns:jboss="http://www.jboss.com/xml/ns/javaee"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="urn:ejb-pool:1.0"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-ejb3-2_0.xsd
+                     http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1" impl-version="2.0">
+	<enterprise-beans>
+		<message-driven>
+			<ejb-name>PageBuilderNotificationListener</ejb-name>
+			<ejb-class>com.hp.pagebuilder.synchronizer.mdb.PageBuilderNotificationListener</ejb-class>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>java:/global/jms/SynchronizerDestination</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>maxSession</activation-config-property-name>
+					<activation-config-property-value>1</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+		</message-driven>
+	</enterprise-beans>
+    <assembly-descriptor>
+        <p:pool>  
+            <ejb-name>PageBuilderNotificationListener</ejb-name>  
+            <p:bean-instance-pool-ref>mdb-strict-singleton-pool</p:bean-instance-pool-ref>  
+        </p:pool>  
+    </assembly-descriptor>
+</jboss:ejb-jar>

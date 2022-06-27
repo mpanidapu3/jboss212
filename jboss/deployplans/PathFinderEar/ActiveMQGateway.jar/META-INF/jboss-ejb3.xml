@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2022 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+<jboss:ejb-jar xmlns:jboss="http://www.jboss.com/xml/ns/javaee"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-ejb3-2_0.xsd
+                     http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1" impl-version="2.0">
+	<enterprise-beans>
+		<session>
+			<ejb-name>ActiveMQGateway</ejb-name>
+			<resource-ref>
+				<res-ref-name>jms/IngeniumGatewayConnectionFactory</res-ref-name>
+				<jndi-name>java:/app/eis/IngeniumJmsGatewayConnectionFactory</jndi-name>
+			</resource-ref>
+			<message-destination-ref>
+				<message-destination-ref-name>jms/IngeniumDispatchQueue</message-destination-ref-name>
+				<jndi-name>java:/app/jms/IngeniumDispatchQueue</jndi-name>
+			</message-destination-ref>
+			<message-destination-ref>
+				<message-destination-ref-name>jms/IngeniumInQueue</message-destination-ref-name>
+				<jndi-name>java:/app/jms/IngeniumInQueue</jndi-name>
+			</message-destination-ref>
+			<message-destination-ref>
+				<message-destination-ref-name>jms/IngeniumOutQueue</message-destination-ref-name>
+				<jndi-name>java:/app/jms/IngeniumOutQueue</jndi-name>
+			</message-destination-ref>
+		</session>
+	</enterprise-beans>
+</jboss:ejb-jar>
+

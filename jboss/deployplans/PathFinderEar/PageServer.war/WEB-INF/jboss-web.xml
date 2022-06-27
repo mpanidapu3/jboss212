@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+
+<jboss-web>
+	<context-root>ingenium</context-root>
+    <ejb-ref>
+        <ejb-ref-name>ejb/BamGateway</ejb-ref-name>
+		<jndi-name>java:global/BamServerEar/BamServerEjb/BamGatewayBean</jndi-name>
+    </ejb-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/PathFinderLocal</ejb-ref-name>
+		<local-jndi-name>java:app/PathFinderEjb/PathFinder!com.solcorp.pathfinder.ejb.PathFinderLocal</local-jndi-name>
+		<local>com.solcorp.pathfinder.ejb.PathFinderLocal</local>
+    </ejb-local-ref>
+    <ejb-local-ref>
+        <ejb-ref-name>ejb/CodeServerLocal</ejb-ref-name>
+		<local-jndi-name>java:global/PathFinderEar/CodeServerEjb/CodeServer!com.solcorp.codeserver.ejb.CodeServerLocal</local-jndi-name>
+		<local>com.solcorp.codeserver.ejb.CodeServerLocal</local>
+    </ejb-local-ref>
+    <resource-ref>
+		<res-ref-name>jms/SynchronizerConnectionFactory</res-ref-name>
+		<jndi-name>java:/ConnectionFactory</jndi-name>
+	</resource-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/SynchronizerDestination</message-destination-ref-name>
+		<jndi-name>java:/global/jms/SynchronizerDestination</jndi-name>
+	</message-destination-ref>
+	<security-role>
+    	<role-name>IngeniumGroup</role-name>
+    </security-role>
+	<security-domain>pathfinder-domain</security-domain>
+</jboss-web>
+
+

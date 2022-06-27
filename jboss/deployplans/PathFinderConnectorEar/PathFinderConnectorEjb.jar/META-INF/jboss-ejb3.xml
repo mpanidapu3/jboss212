@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+<jboss:ejb-jar xmlns:jboss="http://www.jboss.com/xml/ns/javaee"
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:s="urn:security:1.1"
+	xmlns:p="urn:ejb-pool:1.0"
+	xmlns:r="urn:resource-adapter-binding"
+	xsi:schemaLocation="http://www.jboss.com/xml/ns/javaee http://www.jboss.org/j2ee/schema/jboss-ejb3-2_0.xsd
+                     http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1" 
+	impl-version="2.0">
+	<assembly-descriptor>
+		<r:resource-adapter-binding>
+			<ejb-name>PathFinderConnectorMDB</ejb-name>
+			<r:resource-adapter-name>activemq-rar.rar</r:resource-adapter-name>
+		</r:resource-adapter-binding>
+        <p:pool>  
+            <ejb-name>PathFinderConnectorMDB</ejb-name>  
+            <p:bean-instance-pool-ref>mdb-strict-singleton-pool</p:bean-instance-pool-ref>  
+        </p:pool>  
+	</assembly-descriptor>
+	<enterprise-beans>
+		<message-driven>
+			<ejb-name>PathFinderConnectorMDB</ejb-name>
+			<ejb-class>com.hp.pathfinder.connector.ejb.PathFinderConnectorMDB</ejb-class>
+			<resource-ref>
+				<res-ref-name>mq/PFCConnectionFactory</res-ref-name>
+				<jndi-name>java:/app/eis/PFCConnectionFactory</jndi-name>
+			</resource-ref>
+			<message-destination-ref>
+				<message-destination-ref-name>mq/PFCResponseQueue</message-destination-ref-name>
+				<jndi-name>java:/app/jms/PFCResponseQueue</jndi-name>
+			</message-destination-ref>
+
+			<activation-config>
+					<activation-config-property>
+						<activation-config-property-name>destination</activation-config-property-name>
+						<activation-config-property-value>${PathFinderConnectorMDB.destination}</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>destinationType</activation-config-property-name>
+						<activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>useJndi</activation-config-property-name>
+						<activation-config-property-value>true</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>hostName</activation-config-property-name>
+						<activation-config-property-value>${PathFinderConnectorMDB.hostName}</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>port</activation-config-property-name>
+						<activation-config-property-value>${PathFinderConnectorMDB.port}</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>userName</activation-config-property-name>
+						<activation-config-property-value>${PathFinderConnectorMDB.username}</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>password</activation-config-property-name>
+						<activation-config-property-value>${PathFinderConnectorMDB.password}</activation-config-property-value>
+					</activation-config-property>
+					<activation-config-property>
+						<activation-config-property-name>maxSession</activation-config-property-name>
+						<activation-config-property-value>1</activation-config-property-value>
+					</activation-config-property>
+				</activation-config>
+		</message-driven>
+	</enterprise-beans>
+</jboss:ejb-jar>

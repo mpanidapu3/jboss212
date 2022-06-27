@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--                                                          
+*********************************************************************************
+*  All right, title and interest in and to the software        
+*  (the "Software") and the accompanying documentation or      
+*  materials (the "Documentation"), including all proprietary  
+*  rights, therein including all patent rights, trade secrets, 
+*  trademarks and copyrights, shall remain the exclusive       
+*  property of DXC Technology Company.
+*  No interest, license or any right respecting the Software      
+*  and the Documentation, other than expressly granted in      
+*  the Software License Agreement, is granted by implication   
+*  or otherwise.                                               
+*                                                              
+*  (C) 2014 DXC Technology Company.
+*  All rights reserved.                                        
+*********************************************************************************
+-->
+
+<jboss-web>
+	<context-root>PathFinderConnector</context-root>
+	<ejb-ref>
+		<ejb-ref-name>ejb/PathFinder</ejb-ref-name>
+		<jndi-name>java:/global/PathFinderEar/PathFinderEjb/PathFinder!com.solcorp.pathfinder.ejb.PathFinderRemote</jndi-name>
+	</ejb-ref>
+	<ejb-ref>
+		<ejb-ref-name>ejb/BamGateway</ejb-ref-name>
+		<jndi-name>java:/global/BamServerEar/BamServerEjb/BamGatewayBean</jndi-name>
+	</ejb-ref>
+	<resource-ref>
+		<res-ref-name>jms/PFCConnectionFactory</res-ref-name>
+		<jndi-name>java:/ConnectionFactory</jndi-name>
+	</resource-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/PFCTransmitRequestQueue</message-destination-ref-name>
+		<jndi-name>java:/app/jms/PFCTransmitRequestQueue</jndi-name>
+	</message-destination-ref>
+	<message-destination-ref>
+		<message-destination-ref-name>jms/PFCTransmitResponseQueue</message-destination-ref-name>
+		<jndi-name>java:/app/jms/PFCTransmitResponseQueue</jndi-name>
+	</message-destination-ref>
+</jboss-web>
+
+
